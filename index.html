@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Pelanggan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>📋 Data Pelanggan</h1>
+
+  <!-- Form Input -->
+  <form id="formPelanggan">
+    <input type="hidden" id="pelangganId">
+    <input type="text" id="nama" placeholder="Nama Lengkap" required>
+    <input type="text" id="telp" placeholder="No. Telp" required>
+    <input type="text" id="alamat" placeholder="Alamat" required>
+    <button type="submit">Simpan</button>
+  </form>
+
+  <!-- Search -->
+  <input type="text" id="search" placeholder="Cari pelanggan...">
+
+  <!-- Tabel Data -->
+  <table>
+    <thead>
+      <tr>
+        <th>Nama</th>
+        <th>No. Telp</th>
+        <th>Alamat</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody id="tabelPelanggan"></tbody>
+  </table>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+    // 🔑 Ganti dengan konfigurasi project Firebase kamu
+    const firebaseConfig = {
+      apiKey: "API_KEY_KAMU",
+      authDomain: "NAMA_PROJECT.firebaseapp.com",
+      projectId: "NAMA_PROJECT",
+      storageBucket: "NAMA_PROJECT.appspot.com",
+      messagingSenderId: "SENDER_ID",
+      appId: "APP_ID"
+    };
+
+    // Inisialisasi Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Biar bisa dipakai di script.js
+    window.db = db;
+  </script>
+
+  <!-- Script utama -->
+  <script type="module" src="script.js"></script>
+</body>
+</html>
